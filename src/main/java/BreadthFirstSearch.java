@@ -1,43 +1,66 @@
 
 public class BreadthFirstSearch {
 
-    /** bfs will take an Adjacency List as input and return an array containing the order of nodes traversed via a Breadth First Search.
+
+    /** bfs will take an Adjacency List as input and return an array containing the order of nodes traversed.
      *
      * @param graph - an Adjacency List
-     * @return - an array containing the order of nodes traversed via a Breadth First Search.
+     * @return - an array containing the order of nodes traversed
      */
     public static int[] bfs(int[][] graph) {
 
-        // Create a Queue and add the first node (0) to it. Use your Queue class that you just created!
+        // Create a Queue and add the first node (0) to it.
+        // Use your Queue class that you just created!
 
-        // Create a visited array. This array will track whether we have visited a specific node.
+        CISQueue queue = new CISQueue(0);
 
-        // Create a bfs path array and a bfs path index. This array will track the order that the nodes were visited.
+        // Create a visited array.
+        // This array will track whether we have visited a specific node.
+        boolean[] visited = new boolean[graph.length];
 
-        // Add the first node (0) to the queue.
+        // Create a bfs array and a bfs index.
+        // This array will track the order that the nodes were visited.
+        int[] bfs = new int[graph.length];
+        int bfsIndex = 0;
 
-        // Record the first node (0) as visited.
-        
-        // Time to traverse the graph! While the queue is not empty ...
+        // Add the first node (0) to the bfs array.
 
-            // Dequeue (poll) the queue and store this value in a variable called currentNode.
+        queue.enqueue(0);
 
-            // Record this node as visited.
+        // Record the first node as having been visited.
+        visited[0] = true;
+        bfs[bfsIndex++] = 0;
 
-            // Add this node to the path and update the path index.
+        // Time to traverse the graph!
+        // While the queue is not empty ...
+        while(!queue.isEmpty()){
+            int currentNode = (int) queue.dequeue();;
+            visited[currentNode] = true;
+            for(int neighbour : graph[currentNode]){
+                if(!visited[neighbour]){
+                    visited[neighbour] = true;
+                    queue.enqueue(neighbour);
+                    bfs[bfsIndex] = neighbour;
+                }
+            }
+            return bfs;
+        }
 
-            // Obtain an array of this node's neighbouring/adjacent nodes.
-        
-            // Explore the current nodes neighbouring nodes. For each neighbouring node ...
+        // Dequeue (poll) the queue and store this value in a variable called currentNode.
 
-                // If a neighbour hasn't been visited before ...
+        // Record this node as visited.
 
-                    // Record the neighbour as visited.
-        
-                    // Add the neighbour to the queue. 
+        // Explore the current nodes neighbouring nodes.
+        // For each neighbouring node ...
 
-        // Return bfs path.
-        
+        // Store the neighbour in a variable called neighbour.
+
+        // If neighbour hasn't been visited before ...
+        // Mark neighbour as visited.
+        // Add neighbour to the queue.
+        // Add neighbour to bfs.
+
+        // Return bfs.
         return null;
     }
 }
